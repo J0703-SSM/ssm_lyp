@@ -59,7 +59,7 @@
         </tr>
         <tr>
             <td></td>
-            0
+            <%--0--%>
             <td class="login_button" colspan="2">
                 <%--<input type="image" src="/resources/images/login_btn.png">--%>
                 <a href="#" id="b"><img src="/resources/images/login_btn.png"/></a>

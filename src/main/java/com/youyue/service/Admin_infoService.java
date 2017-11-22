@@ -13,6 +13,8 @@ public interface Admin_infoService {
 
     Admin_info selectByPrimaryKey(Integer adminId);
 
+    Admin_info email(String email);
+
 //    Admin_info findId();
 
 }

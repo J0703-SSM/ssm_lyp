@@ -22,6 +22,7 @@ public interface Admin_infoMapper {
     void updateById(@Param("password") String password,
                     @Param("adminId") Integer adminId);
 
+    Admin_info email(@Param("email") String email);
 
 //    Admin_info findId();
 

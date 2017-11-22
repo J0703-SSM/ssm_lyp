@@ -29,6 +29,10 @@ public class Admin_infoServiceImpl implements Admin_infoService {
         return admin_infoMapper.selectByPrimaryKey(adminId);
     }
 
+    public Admin_info email(String email) {
+        return admin_infoMapper.email(email);
+    }
+
 //    public Admin_info findId() {
 //        return admin_infoMapper.findId();
 //    }

@@ -129,6 +129,11 @@
     admin_code = #{username} AND password = #{password}
   </select>
 
+    <select id="email" resultMap="BaseResultMap">
+        SELECT * FROM admin_info WHERE
+        email = #{email}
+    </select>
+
 
     <update id="updateById">
     update admin_info

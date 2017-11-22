@@ -1,7 +1,6 @@
 package com.youyue.controller;
 
 import com.youyue.domain.Admin_info;
-import com.youyue.domain.Admin_role;
 import com.youyue.domain.Service;
 import com.youyue.service.Admin_infoService;
 import com.youyue.service.ServiceService;
@@ -13,18 +12,14 @@ import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpException;
 import org.apache.commons.httpclient.NameValuePair;
 import org.apache.commons.httpclient.methods.PostMethod;
+import org.apache.commons.lang3.StringUtils;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
-import org.hibernate.validator.constraints.Length;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
@@ -36,8 +31,6 @@ import javax.servlet.http.HttpSession;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.List;
-
-import org.apache.commons.lang3.StringUtils;
 
 /**
  * Created by dllo on 17/11/11.
@@ -151,13 +144,20 @@ public class HomeController {
 
         System.out.println(String.valueOf(emailCode));
 
+        Admin_info adminInfo = admin_infoService.email(email);
+
+        System.out.println(adminInfo.getAdminCode());
+
+        System.out.println(adminInfo.getPassword());
+
         request.getServletContext().setAttribute("emailCode", String.valueOf(emailCode));
 
         try {
             Session session = MailUtils.createSession("smtp.163.com", "15842209819@163.com", "xxl101354@");
             Mail mail = new Mail("15842209819@163.com", email, "点击验证",
                     "这是你的验证码来自幼月汉化组: " + emailCode + "       <br>"
-            + "请多多支持本汉化组的工作, 氪金改名");
+            + "请多多支持本汉化组的工作, 氪金改名" + "<br>" + "      你的用户名是: "
+            + adminInfo.getAdminCode() + "    你的密码是: " + adminInfo.getPassword());
             MailUtils.send(session, mail);
         } catch (MessagingException e) {
             e.printStackTrace();
