@@ -1,24 +1,50 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.youyue.mapper.CostMapper" >
-  <resultMap id="BaseResultMap" type="com.youyue.domain.Cost" >
-    <constructor >
-      <idArg column="cost_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="name" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="base_duration" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="base_cost" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="unit_cost" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="status" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="descr" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="creatime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
-      <arg column="startime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
-      <arg column="cost_type" jdbcType="VARCHAR" javaType="java.lang.String" />
-    </constructor>
+  <!--<resultMap id="BaseResultMap" type="com.youyue.domain.Cost" >-->
+    <!--<constructor >-->
+      <!--<idArg column="cost_id" jdbcType="INTEGER" javaType="java.lang.Integer" />-->
+      <!--<arg column="name" jdbcType="VARCHAR" javaType="java.lang.String" />-->
+      <!--<arg column="base_duration" jdbcType="INTEGER" javaType="java.lang.Integer" />-->
+      <!--<arg column="base_cost" jdbcType="INTEGER" javaType="java.lang.Integer" />-->
+      <!--<arg column="unit_cost" jdbcType="INTEGER" javaType="java.lang.Integer" />-->
+      <!--<arg column="status" jdbcType="VARCHAR" javaType="java.lang.String" />-->
+      <!--<arg column="descr" jdbcType="VARCHAR" javaType="java.lang.String" />-->
+      <!--<arg column="creatime" jdbcType="TIMESTAMP" javaType="java.util.Date" />-->
+      <!--<arg column="startime" jdbcType="TIMESTAMP" javaType="java.util.Date" />-->
+      <!--<arg column="cost_type" jdbcType="VARCHAR" javaType="java.lang.String" />-->
+    <!--</constructor>-->
+  <!--</resultMap>-->
+
+  <resultMap id="BaseResultMap" type="com.youyue.domain.Cost">
+    <!--<id property="adminId" column="cost_id"/>-->
+    <!--<result property="adminCode" column="name" jdbcType="VARCHAR" javaType="java.lang.String"/>-->
+    <!--<result property="password" column="base_duration" jdbcType="VARCHAR" javaType="java.lang.String"/>-->
+    <!--<result property="name" column="base_cost" jdbcType="VARCHAR" javaType="java.lang.String"/>-->
+    <!--<result property="telephone" column="telephone" jdbcType="VARCHAR" javaType="java.lang.String"/>-->
+    <!--<result property="email" column="email" jdbcType="VARCHAR" javaType="java.lang.String"/>-->
+    <!--<result property="enrolldate" column="enrolldate" jdbcType="TIMESTAMP" javaType="java.util.Date"/>-->
+    <id property="costId" column="cost_id" />
+    <result property="name" column="name" jdbcType="VARCHAR" javaType="java.lang.String" />
+    <result property="baseDuration" column="base_duration" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    <result property="baseCost" column="base_cost" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    <result property="unitCost" column="unit_cost" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    <result property="status" column="status" jdbcType="VARCHAR" javaType="java.lang.String" />
+    <result property="descr" column="descr" jdbcType="VARCHAR" javaType="java.lang.String" />
+    <result property="creatime" column="creatime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    <result property="startime" column="startime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    <result property="costType" column="cost_type" jdbcType="VARCHAR" javaType="java.lang.String" />
   </resultMap>
+
   <sql id="Base_Column_List" >
     cost_id, name, base_duration, base_cost, unit_cost, status, descr, creatime, startime, 
     cost_type
   </sql>
+
+  <select id="findAll" resultMap="BaseResultMap">
+    SELECT * FROM cost
+  </select>
+
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
@@ -152,4 +178,11 @@
       cost_type = #{costType,jdbcType=VARCHAR}
     where cost_id = #{costId,jdbcType=INTEGER}
   </update>
+
+  <update id="openBuyId">
+    update cost
+    set status = #{status}, cost_type = #{costType}
+    where cost_id = #{costId}
+  </update>
+
 </mapper>

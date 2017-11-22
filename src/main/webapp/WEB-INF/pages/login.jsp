@@ -70,8 +70,8 @@
     </table>
 
     Language:
-    <%--<a href="?lang=zh_CN"><spring:message code="language.cn"/></a> &nbsp;&nbsp;&nbsp;--%>
-    <%--<a href="?lang=en_US"><spring:message code="language.en"/></a>--%>
+    <%--<a href="a?lang=zh_CN"><spring:message code="language.cn"/></a> &nbsp;&nbsp;&nbsp;--%>
+    <%--<a href="a?lang=en_US"><spring:message code="language.en"/></a>--%>
 
     <br><br>
     <div>

@@ -18,6 +18,15 @@ public class Admin_info {
 
     private Date enrolldate;
 
+    private List<Admin_role> role;
+
+    public List<Admin_role> getRole() {
+        return role;
+    }
+
+    public void setRole(List<Admin_role> role) {
+        this.role = role;
+    }
 
     public Admin_info(Integer adminId, String adminCode, String password, String name, String telephone, String email, Date enrolldate) {
         this.adminId = adminId;

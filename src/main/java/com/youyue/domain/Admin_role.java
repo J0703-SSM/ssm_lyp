@@ -7,6 +7,25 @@ public class Admin_role {
 
     private Integer roleId;
 
+    private List<Role_module> roleModules;
+    private Role_info roleInfo;
+
+    public List<Role_module> getRoleModules() {
+        return roleModules;
+    }
+
+    public void setRoleModules(List<Role_module> roleModules) {
+        this.roleModules = roleModules;
+    }
+
+    public Role_info getRoleInfo() {
+        return roleInfo;
+    }
+
+    public void setRoleInfo(Role_info roleInfo) {
+        this.roleInfo = roleInfo;
+    }
+
     public Admin_role(Integer adminId, Integer roleId) {
         this.adminId = adminId;
         this.roleId = roleId;

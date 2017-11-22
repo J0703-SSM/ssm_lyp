@@ -1,8 +1,10 @@
 package com.youyue.controller;
 
 import com.youyue.domain.Admin_info;
+import com.youyue.domain.Cost;
 import com.youyue.domain.Service;
 import com.youyue.service.Admin_infoService;
+import com.youyue.service.CostService;
 import com.youyue.service.ServiceService;
 import com.youyue.utils.AjaxLoginResult;
 import com.youyue.utils.mail.Mail;
@@ -19,6 +21,7 @@ import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -46,12 +49,32 @@ public class HomeController {
     @Resource
     private ServiceService serviceService;
 
+    @Resource
+    private CostService costService;
+
     private String text;
 
     @RequestMapping("/")
     public String home() {
         return "login";
     }
+
+    @RequestMapping("/error")
+    public String error(){
+        return "error";
+    }
+
+//    @Controller
+//    public class I18nController {
+//
+//        @RequestMapping(value = "/a")
+//        public ModelAndView welcome() {
+//            ModelAndView modelAndView = new ModelAndView("welcome");
+//
+//            return modelAndView;
+//        }
+//
+//    }
 
     @RequestMapping(value = "sendsmm")
     public void sendsmm(String phone, HttpSession session) {
@@ -210,36 +233,43 @@ public class HomeController {
 
         }
 
-        if (!code.equalsIgnoreCase(text)) {
+//        Admin_info id = admin_infoService.findId();
 
-            result.setErrorCode(404);
-//            result.setMessage();
-            result.setMess("验证码输入错误");
-//            model.addAttribute("code", "验证码输入错误");
-        }
+//        System.out.println(id);
 
 
-//        System.out.println("这里");
-//        System.out.println(phoneCode);
-//        System.out.println(phoneCode.equals("null"));
-//        System.out.println(phoneCode == null);
+//        ******************************
+
+//        if (!code.equalsIgnoreCase(text)) {
+//
+//            result.setErrorCode(404);
+////            result.setMessage();
+//            result.setMess("验证码输入错误");
+////            model.addAttribute("code", "验证码输入错误");
+//        }
+
+
         String mobile_code = (String) request.getSession().getAttribute("mobile_code");
 
-        if (mobile_code == null || !mobile_code.equals(phoneCode)){
 
-            result.setErrorCode(404);
-            result.setPhonemess("手机验证码错误");
+//        if (mobile_code == null || !mobile_code.equals(phoneCode)){
+//
+//            result.setErrorCode(404);
+//            result.setPhonemess("手机验证码错误");
+//
+//        }
+//
+//        String eCode = (String) request.getServletContext().getAttribute("emailCode");
+//
+//        if (eCode == null || !eCode.equals(emailCode)){
+//
+//            result.setErrorCode(404);
+//            result.setEamilmess("邮箱验证码错误");
+//
+//        }
 
-        }
 
-        String eCode = (String) request.getServletContext().getAttribute("emailCode");
-
-        if (eCode == null || !eCode.equals(emailCode)){
-
-            result.setErrorCode(404);
-            result.setEamilmess("邮箱验证码错误");
-
-        }
+//        ********************************
 
 //        System.out.println(mobile_code);
 //        System.out.println(mobile_code == null);
@@ -337,9 +367,77 @@ public class HomeController {
     }
 
     @RequestMapping("/fee_list")
-    public String fee_list() {
+    public String fee_list(Model model) {
+
+        List<Cost> cost = costService.findAll();
+
+        model.addAttribute("cost", cost);
+
         return "fee/fee_list";
     }
+
+    @RequestMapping("/startFee")
+    public String startFee(String costId){
+
+        System.out.println(costId);
+
+        costService.openBuyId(costId);
+
+        return "redirect:/fee_list";
+    }
+
+    @RequestMapping("feeModi/{costId}")
+    public String fee_modi(@PathVariable Integer costId,
+                           Model model){
+
+//        System.out.println(costId);
+
+        Cost cost = costService.selectByPrimaryKey(costId);
+
+        model.addAttribute("coster", cost);
+
+//        System.out.println(cost);
+
+        return "/fee/fee_modi";
+
+    }
+
+
+    @RequestMapping("updateFee")
+    public String updateFee(String costid, String name, String base_duration,
+                            String base_cost, String unit_cost, String descr){
+
+        Cost cost = costService.selectByPrimaryKey(Integer.valueOf(costid));
+
+        cost.setName(name);
+        cost.setBaseDuration(Integer.valueOf(base_duration));
+        cost.setBaseCost(Integer.valueOf(base_cost));
+        cost.setUnitCost(Integer.valueOf(unit_cost));
+        cost.setDescr(descr);
+
+        costService.updateByPrimaryKeySelective(cost);
+
+        System.out.println(costid);
+        System.out.println(name);
+        System.out.println(base_duration);
+        System.out.println(base_cost);
+        System.out.println(unit_cost);
+        System.out.println(descr);
+
+
+        return "redirect:/fee_list";
+    }
+
+    @RequestMapping("deleteFee")
+    public String deleteFee(String costId){
+
+        System.out.println(costId);
+
+        costService.deleteByPrimaryKey(Integer.valueOf(costId));
+
+        return "redirect:/fee_list";
+    }
+
 
     @RequestMapping("/account_list")
     public String account_list() {
