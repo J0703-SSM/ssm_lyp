@@ -16,7 +16,7 @@
     <table>
         <tr>
             <td class="login_info">账号：</td>
-            <td colspan="2"><input name="username" id="username" type="text" class="width150"/></td>
+            <td colspan="2"><input name="username" id="username" type="text" class="width150" placeholder="请输入用户名0-30"  maxlength="30"/></td>
             <td class="login_error_info"><span class="required" id="usernamehint"></span></td>
             <%--<c:if test="${usernameError != null}">--%>
             <%--${usernameError.defaultMessage}--%>
@@ -24,7 +24,7 @@
         </tr>
         <tr>
             <td class="login_info">密码：</td>
-            <td colspan="2"><input name="password" id="password" type="password" class="width150"/></td>
+            <td colspan="2"><input name="password" id="password" type="password" class="width150" placeholder="请输入密码0-30"  maxlength="30"/></td>
             <td><span class="required" id="passwordhint"></span></td>
         </tr>
         <tr>

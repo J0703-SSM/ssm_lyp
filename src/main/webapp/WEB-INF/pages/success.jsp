@@ -14,7 +14,7 @@
 </head>
 <body>
 <div id="allmap"></div>
-<p>在地图上添加全景控件，点击全景控件进入全景图</p>
+<%--<p>在地图上添加全景控件，点击全景控件进入全景图</p>--%>
 </body>
 </html>
 <script type="text/javascript">
