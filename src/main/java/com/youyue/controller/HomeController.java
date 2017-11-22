@@ -146,9 +146,9 @@ public class HomeController {
 
         Admin_info adminInfo = admin_infoService.email(email);
 
-        System.out.println(adminInfo.getAdminCode());
-
-        System.out.println(adminInfo.getPassword());
+//        System.out.println(adminInfo.getAdminCode());
+//
+//        System.out.println(adminInfo.getPassword());
 
         request.getServletContext().setAttribute("emailCode", String.valueOf(emailCode));
 

@@ -74,4 +74,18 @@
         <!-- 定义 sessionFactory, 引用上面配置的工厂对象 -->
         <property name="sqlSessionFactoryBeanName" value="sessionFactory"/>
     </bean>
+
+    <!--&lt;!&ndash; 国际化资源文件 &ndash;&gt;-->
+    <!--<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">-->
+        <!--&lt;!&ndash; 表示多语言配置文件在根路径下，以language开头的文件&ndash;&gt;-->
+        <!--<property name="basename" value="classpath:i18n"/>-->
+        <!--<property name="useCodeAsDefaultMessage" value="true"/>-->
+    <!--</bean>-->
+
+    <!--<mvc:interceptors>-->
+        <!--<bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">-->
+            <!--<property name="paramName" value="lang"/>-->
+        <!--</bean>-->
+    <!--</mvc:interceptors>-->
+
 </beans>
