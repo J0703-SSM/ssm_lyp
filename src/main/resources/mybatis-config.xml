@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <!--<properties resource="db.properties"/>-->
+
+    <!-- 加载映射文件 采用包声明的方式
+        要求: 接口类与映射文件在同一级目录-->
+    <mappers>
+        <package name="com.youyue.mapper"/>
+    </mappers>
+
+</configuration>
