@@ -19,5 +19,7 @@ public interface CostService {
 
     int deleteByPrimaryKey(Integer costId);
 
+    int insertSelective(Cost record);
+
 }
 

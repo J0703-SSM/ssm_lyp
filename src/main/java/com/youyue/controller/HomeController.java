@@ -439,6 +439,35 @@ public class HomeController {
         return "redirect:/fee_list";
     }
 
+    @RequestMapping("feeAdd")
+    public String feeAdd(){
+
+        return "/fee/fee_add";
+
+    }
+
+    @RequestMapping("insertFee")
+    public String insertFee(String name, String baseDuration, String baseCost,
+                            String unitCost, String descr){
+
+        System.out.println(name);
+        System.out.println(baseDuration);
+        System.out.println(baseCost);
+        System.out.println(unitCost);
+        System.out.println(descr);
+
+        Cost cost = new Cost();
+        cost.setName(name);
+        cost.setBaseDuration(Integer.valueOf(baseDuration));
+        cost.setBaseCost(Integer.valueOf(baseCost));
+        cost.setUnitCost(Integer.valueOf(unitCost));
+        cost.setDescr(descr);
+
+        costService.insertSelective(cost);
+
+        return "redirect:/fee_list";
+    }
+
 
     @RequestMapping("/account_list")
     public String account_list() {

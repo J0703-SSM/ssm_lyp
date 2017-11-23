@@ -37,5 +37,9 @@ public class CostServiceImpl implements CostService {
         return costMapper.deleteByPrimaryKey(costId);
     }
 
+    public int insertSelective(Cost record) {
+        return costMapper.insertSelective(record);
+    }
+
 
 }
