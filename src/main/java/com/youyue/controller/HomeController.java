@@ -55,6 +55,7 @@ public class HomeController {
     private String text;
 
     @RequestMapping("/")
+//    @RequestMapping({"/","login"})
     public String home() {
         return "login";
     }

@@ -20,7 +20,7 @@
                 }
                 else {
                     window.clearInterval(timer);
-                    location.href = "login.jsp";
+                    location.href = "index";
                 }
             }
 
