@@ -525,6 +525,7 @@ public class HomeController {
     public void a(HttpServletRequest request, HttpServletResponse response) throws IOException {
         VerifyCode vc = new VerifyCode();
         BufferedImage image = vc.getImage();
+        response.getOutputStream();
         VerifyCode.output(image, response.getOutputStream());
 
         text = vc.getText();

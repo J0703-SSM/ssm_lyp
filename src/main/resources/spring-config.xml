@@ -5,6 +5,24 @@
        xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
+
+    <mvc:interceptors>
+        <!--拦截器执行的顺序依照下面的加入顺序执行-->
+        <mvc:interceptor>
+            <!--要拦截的请求路径-->
+            <mvc:mapping path="/**"/>
+            <!--不拦截资源-->
+            <mvc:exclude-mapping path="/resources/**"/>
+            <mvc:exclude-mapping path="/"/>
+            <mvc:exclude-mapping path="/validateCode"/>
+            <mvc:exclude-mapping path="/login"/>
+            <mvc:exclude-mapping path="/sendsmm"/>
+            <mvc:exclude-mapping path="/sendMail"/>
+            <!--拦截器所对应的类路径-->
+            <bean class="com.youyue.interceptor.LoginIntercepor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
 <!-- 配置注解模型 -->
     <mvc:annotation-driven>
         <!-- 消息转换器,解决responseBody返回中外乱码问题 -->

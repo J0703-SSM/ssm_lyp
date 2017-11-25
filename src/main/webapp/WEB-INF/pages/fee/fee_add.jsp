@@ -19,13 +19,13 @@
                         unitCost:$("#unitCost").val(),
                         descr:$("#descr").val()
                     }, success: function () {
-                        location.reload();
+//                        location.reload();
+                showResultDiv(true);
+//                window.setTimeout("showResultDiv(false);", 3000);
                     }
                 });
 
 
-//                showResultDiv(true);
-//                window.setTimeout("showResultDiv(false);", 3000);
             }
             function showResultDiv(flag) {
                 var divResult = document.getElementById("save_result_info");
